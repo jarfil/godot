@@ -1913,8 +1913,6 @@ void Viewport::_gui_input_event(InputEvent p_event) {
 			gui.key_event_accepted=false;
 			Point2 mpos=Point2(p_event.mouse_motion.x,p_event.mouse_motion.y);
 
-			gui.last_mouse_pos=mpos;
-
 			Control *over = NULL;
 
 
@@ -2007,8 +2005,13 @@ void Viewport::_gui_input_event(InputEvent p_event) {
 
 				}
 
+				bool mouse_moved = false;
 
-				if (can_tooltip) {
+				if (mpos.x != gui.last_mouse_pos.x || mpos.y != gui.last_mouse_pos.y) {
+					mouse_moved = true;
+				}
+
+				if (can_tooltip && !mouse_moved) {
 
 					gui.tooltip=over;
 					gui.tooltip_pos=mpos;//(parent_xform * get_transform()).affine_inverse().xform(pos);
@@ -2017,6 +2020,7 @@ void Viewport::_gui_input_event(InputEvent p_event) {
 				}
 			}
 
+			gui.last_mouse_pos = mpos;
 
 			//pos = gui.focus_inv_xform.xform(pos);
 
