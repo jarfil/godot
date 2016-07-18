@@ -2292,9 +2292,9 @@ void Viewport::_gui_remove_control(Control *p_control) {
 		gui.mouse_over=NULL;
 	if (gui.tooltip == p_control)
 		gui.tooltip=NULL;
-	//if (gui.tooltip_popup == p_control) {
-	//	_gui_cancel_tooltip();
-	//}
+	if (gui.tooltip_popup == p_control) {
+		_gui_cancel_tooltip();
+	}
 
 
 }
