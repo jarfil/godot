@@ -1525,10 +1525,6 @@ void Viewport::_gui_show_tooltip() {
 		return; // bye
 
 	if (gui.tooltip_popup) {
-		if (tooltip == gui.tooltip_label->get_text()) {
-			return; // don't destroy and show again the same tooltip
-		}
-
 		memdelete(gui.tooltip_popup);
 		gui.tooltip_popup=NULL;
 	}
